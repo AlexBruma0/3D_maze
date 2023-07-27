@@ -22,10 +22,11 @@ function init() {
 
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
   camera.position.y = 2;
+  camera.position.x = 20;
+
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0xffffff );
-  scene.fog = new THREE.Fog( 0xffffff, 0, 750 );
+  scene.background = new THREE.Color( 'blue' );
 
   const light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 2.5 );
   light.position.set( 0.5, 1, 0.75 );
@@ -126,30 +127,6 @@ function init() {
   // floor
   meshes(scene)
 
-  {
-		const planeSize = 400;
-		const loader = new THREE.TextureLoader();
-		const texture = loader.load( 'https://threejs.org/manual/examples/resources/images/checker.png' );
-		texture.wrapS = THREE.RepeatWrapping;
-		texture.wrapT = THREE.RepeatWrapping;
-		texture.magFilter = THREE.NearestFilter;
-		texture.colorSpace = THREE.SRGBColorSpace;
-		const repeats = planeSize / 2;
-		texture.repeat.set( repeats, repeats );
-
-		const planeGeo = new THREE.PlaneGeometry( planeSize, planeSize );
-		const planeMat = new THREE.MeshPhongMaterial( {
-			map: texture,
-			side: THREE.DoubleSide,
-		} );
-		const mesh = new THREE.Mesh( planeGeo, planeMat );
-		mesh.rotation.x = Math.PI * - .5;
-    
-		scene.add( mesh );
-
-	}
-
-
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
@@ -177,7 +154,7 @@ function animate() {
 
   if ( controls.isLocked === true ) {
 
-    const delta = ( time - prevTime ) / 300;
+    const delta = ( time - prevTime ) / 200;
     direction.z = Number( moveForward ) - Number( moveBackward );
     direction.x = Number( moveRight ) - Number( moveLeft );
     direction.normalize(); 

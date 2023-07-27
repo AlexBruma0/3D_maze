@@ -17,7 +17,7 @@ function main() {
 	const controls = new FirstPersonControls( camera, canvas );
   controls.movementSpeed = 0.1;
   controls.lookSpeed = 0.009;
-  controls.noFly = true;
+    controls.noFly = true;
 	controls.update(1);
 	const scene = new THREE.Scene();
 	scene.background = new THREE.Color( 'white' );
