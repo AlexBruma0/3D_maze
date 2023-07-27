@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
+import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
+import { FlyControls } from 'three/addons/controls/FlyControls.js';
 function main() {
 
 	const canvas = document.querySelector( '#c' );
@@ -11,13 +12,14 @@ function main() {
 	const near = 0.1;
 	const far = 100;
 	const camera = new THREE.PerspectiveCamera( fov, window.innerWidth / window.innerHeight, near, far );
-	camera.position.set( 0, 10, 20 );
+	camera.position.set( 0, 5, 20 );
 
-	const controls = new OrbitControls( camera, canvas );
-	controls.target.set( 0, 5, 0 );
-  controls.enableDamping = false;
-	controls.update();
-
+	const controls = new FirstPersonControls( camera, canvas );
+  controls.movementSpeed = 0.1;
+  controls.lookSpeed = 0.0009;
+  controls.noFly = true;
+  controls.lookVertical = false;
+	controls.update(1);
 	const scene = new THREE.Scene();
 	scene.background = new THREE.Color( 'white' );
   //floor
@@ -47,39 +49,38 @@ function main() {
 	{
 
 		const cubeSize = 4;
-		const cubeGeo = new THREE.BoxGeometry( cubeSize/4, cubeSize*2, cubeSize*2 );
-		const cubeMat = new THREE.MeshPhongMaterial( { color: '#8AC' } );
+		const cubeGeo = new THREE.BoxGeometry( cubeSize/4, cubeSize*4, cubeSize*20 );
+		const cubeMat = new THREE.MeshPhongMaterial( { color: '#999' } );
 		const mesh = new THREE.Mesh( cubeGeo, cubeMat );
 		mesh.position.set( cubeSize + 1, cubeSize / 2, 0 );
 		scene.add( mesh );
 
 	}
-  //sphere
-	{
 
-		const sphereRadius = 3;
-		const sphereWidthDivisions = 32;
-		const sphereHeightDivisions = 16;
-		const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
-		const sphereMat = new THREE.MeshPhongMaterial( { color: '#CA8' } );
-		const mesh = new THREE.Mesh( sphereGeo, sphereMat );
-		mesh.position.set( - sphereRadius - 1, sphereRadius + 2, 0 );
-		scene.add( mesh );
-
-	}
   //light
 	{
 
 		const color = 0xFFFFFF;
-		const intensity = 2;
+		const intensity = 1;
 		const light = new THREE.AmbientLight( color, intensity );
 		scene.add( light );
 
 	}
-
+  document.addEventListener('keydown', (event) => {
+    if(event.key == 'Shift'){
+      shiftPressed = true;
+    }
+    else {shiftPressed = false}
+  })
+  var shiftPressed = false
 	function render() {
 		renderer.render( scene, camera );
 		requestAnimationFrame( render );
+    controls.activeLook = false
+    if(!shiftPressed) controls.activeLook = false
+    else controls.activeLook = true
+	  controls.update(1);
+
 	}
 	requestAnimationFrame( render );
 }
