@@ -39,6 +39,100 @@ const walls = [
         position: [3,0,5],
         rotation:0
     },
+    {
+        dimension:[wall_width,wall_height,2],
+        position: [0,0,5],
+        rotation:PI/2
+    },
+    {
+        dimension:[wall_width,wall_height,6],
+        position: [0,0,7],
+        rotation:PI/2
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [-3,0,5],
+        rotation:0
+    },
+    //10
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [-1,0,3],
+        rotation:0
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [-5,0,3],
+        rotation:PI/2
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [-3,0,1],
+        rotation:PI/2
+    },
+    {
+        dimension:[wall_width,wall_height,6],
+        position: [-7,0,0],
+        rotation:0
+    },
+    {
+        dimension:[wall_width,wall_height,2],
+        position: [-5,0,0],
+        rotation:0
+    },
+    //15
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [-5,0,-3],
+        rotation:PI/2
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [-3,0,-1],
+        rotation:PI/2
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [-1,0,-3],
+        rotation:0
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [-3,0,-5],
+        rotation:0
+    },
+    {
+        dimension:[wall_width,wall_height,6],
+        position: [0,0,-7],
+        rotation:PI/2
+    },
+    //20
+    {
+        dimension:[wall_width,wall_height,2],
+        position: [0,0,-5],
+        rotation:PI/2
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [3,0,-5],
+        rotation:0
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [1,0,-3],
+        rotation:0
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [3,0,-1],
+        rotation:PI/2
+    },
+    {
+        dimension:[wall_width,wall_height,4],
+        position: [5,0,-3],
+        rotation:PI/2
+    },
+    
 
 ]
 export function meshes(scene) {
