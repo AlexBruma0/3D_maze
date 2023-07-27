@@ -19,8 +19,13 @@ function animate() {
 
 	renderer.render( scene, camera );
 }
+const move_speed = 0.5;
+
 document.addEventListener('keydown', (event) =>{
-  moveCameraOnKey(event, 'w', () => camera.translateZ(-0.5))
+  moveCameraOnKey(event, 'w', () => camera.translateZ(-move_speed))
+  moveCameraOnKey(event, 's', () => camera.translateZ(move_speed))
+  moveCameraOnKey(event, 'a', () => camera.translateX(-move_speed))
+  moveCameraOnKey(event, 'd', () => camera.translateX(move_speed))
 })
 
 function moveCameraOnKey(event, key, move){
