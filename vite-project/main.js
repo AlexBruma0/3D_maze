@@ -7,7 +7,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const geometry = new THREE.BoxGeometry( 1, 1, 8 );
 const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
@@ -28,9 +28,32 @@ document.addEventListener('keydown', (event) =>{
   moveCameraOnKey(event, 'd', () => camera.translateX(move_speed))
 })
 
+document.addEventListener('mousemove', (event) =>{
+  rotateCameraOnMouseMove(event)
+})
+
 function moveCameraOnKey(event, key, move){
   if(event.key === key){
     move()
+  }
+}
+const rotate_speed = 0.05
+
+function rotateCameraOnMouseMove(event){
+  if(event.which === 3){
+    if(event.movementX > 0){
+      camera.rotateY(-rotate_speed)
+    }
+    if(event.movementX < 0){
+      camera.rotateY(rotate_speed)
+    }
+    if(event.movementY > 0){
+      camera.rotateX(-rotate_speed)
+    }
+    if(event.movementY < 0){
+      camera.rotateX(rotate_speed)
+    }
+    
   }
 }
 
