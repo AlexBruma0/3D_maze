@@ -17,10 +17,16 @@ camera.position.z = 5;
 function animate() {
 	requestAnimationFrame( animate );
 
-	cube.rotation.x += 0.01;
-	cube.rotation.y += 0.01;
-
 	renderer.render( scene, camera );
+}
+document.addEventListener('keydown', (event) =>{
+  moveCameraOnKey(event, 'w', () => camera.translateZ(-0.5))
+})
+
+function moveCameraOnKey(event, key, move){
+  if(event.key === key){
+    move()
+  }
 }
 
 animate();
