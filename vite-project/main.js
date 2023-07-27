@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { meshes } from './meshes';
 
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
@@ -123,6 +124,7 @@ function init() {
 
 
   // floor
+  meshes(scene)
 
   {
 		const planeSize = 400;
