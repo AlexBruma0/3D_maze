@@ -145,6 +145,9 @@ function onWindowResize() {
   renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
+const max_left = 18
+const max_right = 21
+const max_forword = 7.5
 
 function animate() {
 
@@ -158,9 +161,21 @@ function animate() {
     direction.z = Number( moveForward ) - Number( moveBackward );
     direction.x = Number( moveRight ) - Number( moveLeft );
     direction.normalize(); 
+    // if(camera.position.x >max_left &&camera.position.x <max_right ){
+      controls.moveRight(  direction.x * delta );
+      controls.moveForward(  direction.z * delta );
+      console.log(camera.position)
+    // }
+    // if(camera.position.x <=max_left) camera.position.x += 0.1;
+    // if(camera.position.x >=max_right) camera.position.x -= 0.1;
 
-    controls.moveRight(  direction.x * delta );
-    controls.moveForward(  direction.z * delta );
+    // if(camera.position.z >-max_forword &&camera.position.z <max_forword ){
+    //   controls.moveRight(  direction.x * delta );
+    //   controls.moveForward(  direction.z * delta );
+    //   console.log(camera.position)
+    // }
+    // if(camera.position.z <=max_left) camera.position.x += 0.1;
+    // if(camera.position.z >=max_right) camera.position.x -= 0.1;
 
   }
 
