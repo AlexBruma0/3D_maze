@@ -147,6 +147,9 @@ export function meshes(scene) {
         if(i == 2){
             texture = loader.load( "./welcome.png" );
         }
+        else if(i == 7){
+            texture = loader.load( "./work.png" );
+        }
         else {
             texture = loader.load( "./arrow.png" );
         }
@@ -155,17 +158,40 @@ export function meshes(scene) {
 
         const cubeGeo = new THREE.BoxGeometry( walls[i].dimension[0], walls[i].dimension[1], walls[i].dimension[2] * unit_length );
         if(i == 8){
-            material = new THREE.MeshPhongMaterial({
+            material = new THREE.MeshBasicMaterial({
                 map: videoTexture,
                 side:THREE.FrontSide,
                 toneMapped: false
             })
-        }else{
-            material = new THREE.MeshPhongMaterial( {
-                map: texture,
-                side: THREE.DoubleSide,
-            } );
         }
+        else if(i ==2 || i == 7){
+            material = 
+            [
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {map: texture} ),
+
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+          ]
+        }
+
+        else{
+            material = 
+            [
+                new THREE.MeshBasicMaterial( {map: texture} ),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+          ]
+            
+
+        }
+        
 
         
         const mesh = new THREE.Mesh( cubeGeo, material );
