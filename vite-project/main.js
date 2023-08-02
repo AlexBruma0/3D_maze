@@ -14,9 +14,14 @@ let canJump = false;
 let prevTime = performance.now();
 const velocity = new THREE.Vector3();
 const direction = new THREE.Vector3();
-
+var color = 0xaaaaFF;
+const blue = 0x0000FF;
+const red = 0xFFFFFF;
+var intensity = 1;
+var light;
 init();
 animate();
+
 
 function init() {
 
@@ -28,13 +33,21 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 'black' );
 
-  const color = 0xFFFFFF;
-  const intensity = 1;
-  const light = new THREE.DirectionalLight(color, intensity);
+
+  light = new THREE.DirectionalLight(color, intensity);
+  light.name = 'light'
   light.position.set(0, 10, 0);
   light.target.position.set(-5, 0, -5);
   scene.add(light);
   scene.add(light.target);
+
+  setInterval(() => {
+    intensity = (Math.round(intensity) + 1) % 2;
+    if(intensity == 0){
+      intensity += 0.1
+    }
+  },100)
+
   controls = new PointerLockControls( camera, document.body );
 
   const blocker = document.getElementById( 'blocker' );
@@ -183,6 +196,21 @@ function animate() {
   }
 
   prevTime = time;
+
+  scene.remove(scene.getObjectByName('light'))
+
+  console.log(intensity)
+
+  light = new THREE.DirectionalLight(color, intensity);
+  light.name = 'light'
+  light.position.set(0, 10, 0);
+  light.target.position.set(-5, 0, -5);
+  scene.add(light);
+  scene.add(light.target);
+
+  
+  
+  
 
   renderer.render( scene, camera );
 
