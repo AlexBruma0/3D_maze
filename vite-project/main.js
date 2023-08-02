@@ -28,10 +28,13 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 'black' );
 
-  const light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 2.5 );
-  light.position.set( 0.5, 1, 0.75 );
-  scene.add( light );
-
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(0, 10, 0);
+  light.target.position.set(-5, 0, -5);
+  scene.add(light);
+  scene.add(light.target);
   controls = new PointerLockControls( camera, document.body );
 
   const blocker = document.getElementById( 'blocker' );

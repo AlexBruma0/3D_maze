@@ -139,19 +139,21 @@ export function meshes(scene) {
     floor(scene)
     for(var i = 0; i < walls.length; i++){
         const loader = new THREE.TextureLoader();
-        const texture = loader.load( "./welcome.png" );
+        var texture;
+        if(i == 2){
+            texture = loader.load( "./welcome.png" );
+        }
+        else {
+            texture = loader.load( "./arrow.png" );
+        }
         texture.colorSpace = THREE.SRGBColorSpace;
         var material;
 
         const cubeGeo = new THREE.BoxGeometry( walls[i].dimension[0], walls[i].dimension[1], walls[i].dimension[2] * unit_length );
-        if( i  == 2){
-             material = new THREE.MeshBasicMaterial( {
-                map: texture,
-            } );
-        }
-        else{
-            material = new THREE.MeshPhongMaterial( { color: '#000' } );
-        }
+        material = new THREE.MeshPhongMaterial( {
+            map: texture,
+            side: THREE.DoubleSide,
+        } );
         
         const mesh = new THREE.Mesh( cubeGeo, material );
         mesh.position.set(walls[i].position[0]*unit_length, walls[i].position[1]*unit_length + 4, -walls[i].position[2]*unit_length  );
