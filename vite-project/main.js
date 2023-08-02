@@ -26,7 +26,7 @@ function init() {
 
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color( 'blue' );
+  scene.background = new THREE.Color( 'black' );
 
   const light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 2.5 );
   light.position.set( 0.5, 1, 0.75 );

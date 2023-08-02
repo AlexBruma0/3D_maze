@@ -139,7 +139,7 @@ export function meshes(scene) {
     floor(scene)
     for(var i = 0; i < walls.length; i++){
         const loader = new THREE.TextureLoader();
-        const texture = loader.load( "./me.png" );
+        const texture = loader.load( "./welcome.png" );
         texture.colorSpace = THREE.SRGBColorSpace;
         var material;
 
