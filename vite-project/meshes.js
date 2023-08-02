@@ -137,6 +137,10 @@ const walls = [
 ]
 export function meshes(scene) {
     floor(scene)
+    let video = document.getElementById("video")
+    let videoTexture = new THREE.VideoTexture(video)
+    videoTexture.minFilter = THREE.LinearFilter
+    videoTexture.magFilter = THREE.LinearFilter
     for(var i = 0; i < walls.length; i++){
         const loader = new THREE.TextureLoader();
         var texture;
@@ -150,10 +154,19 @@ export function meshes(scene) {
         var material;
 
         const cubeGeo = new THREE.BoxGeometry( walls[i].dimension[0], walls[i].dimension[1], walls[i].dimension[2] * unit_length );
-        material = new THREE.MeshPhongMaterial( {
-            map: texture,
-            side: THREE.DoubleSide,
-        } );
+        if(i == 8){
+            material = new THREE.MeshPhongMaterial({
+                map: videoTexture,
+                side:THREE.FrontSide,
+                toneMapped: false
+            })
+        }else{
+            material = new THREE.MeshPhongMaterial( {
+                map: texture,
+                side: THREE.DoubleSide,
+            } );
+        }
+
         
         const mesh = new THREE.Mesh( cubeGeo, material );
         mesh.position.set(walls[i].position[0]*unit_length, walls[i].position[1]*unit_length + 4, -walls[i].position[2]*unit_length  );
