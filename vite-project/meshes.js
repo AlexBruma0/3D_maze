@@ -150,6 +150,11 @@ export function meshes(scene) {
         else if(i == 7){
             texture = loader.load( "./work.png" );
         }
+        else if(i == 1 || i == 5 || i == 10|| i == 17|| i == 14 || i == 20|| i == 23){
+            texture = loader.load( "./arrow.png" );
+            texture.center = new THREE.Vector2(0.5,0.5)
+            texture.rotation = Math.PI
+        }
         else {
             texture = loader.load( "./arrow.png" );
         }
@@ -164,7 +169,8 @@ export function meshes(scene) {
                 toneMapped: false
             })
         }
-        else if(i ==2 || i == 7){
+        //ends: i == 2,9,12
+        else if(i ==2 || i == 7 || i ==9 || i == 1 || i == 5 || i == 13 || i == 15||i == 10 || i == 16  || i == 19 || i == 20 || i == 22){
             material = 
             [
                 new THREE.MeshBasicMaterial( {color: 'black'}),
@@ -176,23 +182,41 @@ export function meshes(scene) {
                 new THREE.MeshBasicMaterial( {color: 'black'}),
           ]
         }
+        else if (i == 0 || i == 3 || i == 4 || i == 6  || i == 11 || i == 14 || i == 17|| i == 21 || i == 23    ){
+            material = 
+            [
+                new THREE.MeshBasicMaterial( {map: texture} ),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+                new THREE.MeshBasicMaterial( {color: 'black'}),
+          ]
 
+        }
+        // else if ( i == 9){
+        //     material = 
+        //     [
+        //         new THREE.MeshBasicMaterial( {color: 'black'}),
+        //         new THREE.MeshBasicMaterial( {map: texture} ),
+        //         new THREE.MeshBasicMaterial( {color: 'black'}),
+        //         new THREE.MeshBasicMaterial( {color: 'black'}),
+        //         new THREE.MeshBasicMaterial( {color: 'black'}),
+        //         new THREE.MeshBasicMaterial( {color: 'black'}),
+        //   ]
+        // }
         else{
             material = 
             [
-                new THREE.MeshBasicMaterial( {map: texture} ),
                 new THREE.MeshBasicMaterial( {color: 'black'}),
-
+                new THREE.MeshBasicMaterial( {color: 'black'}),
                 new THREE.MeshBasicMaterial( {color: 'black'}),
                 new THREE.MeshBasicMaterial( {color: 'black'}),
                 new THREE.MeshBasicMaterial( {color: 'black'}),
                 new THREE.MeshBasicMaterial( {color: 'black'}),
           ]
-            
 
         }
-        
-
         
         const mesh = new THREE.Mesh( cubeGeo, material );
         mesh.position.set(walls[i].position[0]*unit_length, walls[i].position[1]*unit_length + 4, -walls[i].position[2]*unit_length  );
@@ -207,6 +231,7 @@ function floor(scene){
     const texture = loader.load( 'https://threejs.org/manual/examples/resources/images/checker.png' );
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
+    
     texture.magFilter = THREE.NearestFilter;
     texture.colorSpace = THREE.SRGBColorSpace;
     const repeats = planeSize/2 ;
