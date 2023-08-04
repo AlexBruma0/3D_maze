@@ -161,9 +161,11 @@ function onWindowResize() {
   renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
-const max_left = 18
+const max_left = 19
 const max_right = 21
-const max_forword = 7.5
+const max_forwards = -8
+const max_backwards = 8
+const pushback = 0.09
 
 function animate() {
 
@@ -177,13 +179,24 @@ function animate() {
     direction.z = Number( moveForward ) - Number( moveBackward );
     direction.x = Number( moveRight ) - Number( moveLeft );
     direction.normalize(); 
-    // if(camera.position.x >max_left &&camera.position.x <max_right ){
-      controls.moveRight(  direction.x * delta );
-      controls.moveForward(  direction.z * delta );
-      console.log(camera.position)
-    // }
-    // if(camera.position.x <=max_left) camera.position.x += 0.1;
-    // if(camera.position.x >=max_right) camera.position.x -= 0.1;
+    
+
+    controls.moveRight(  direction.x * delta );
+    controls.moveForward(  direction.z * delta );
+    console.log(camera.position)
+    
+    if((camera.position.x <=max_left && camera.position.z >= (max_forwards + 3)
+    && camera.position.z <= (max_backwards - 3)) || (camera.position.z <= (-5) && camera.position.z > (-15) && camera.position.x < 6) ) 
+    camera.position.x += pushback;
+
+    if(camera.position.x >=max_right || (camera.position.z <= (max_forwards ) && camera.position.x > 7))
+     camera.position.x -= pushback;
+
+    if(camera.position.z <= max_forwards && camera.position.x > (max_left - 8)) camera.position.z += pushback;
+
+    if(camera.position.z >= max_backwards ||(camera.position.z > max_forwards + 2 && camera.position.x <= max_left ))
+     camera.position.z -= pushback;
+ 
 
     // if(camera.position.z >-max_forword &&camera.position.z <max_forword ){
     //   controls.moveRight(  direction.x * delta );
@@ -199,7 +212,6 @@ function animate() {
 
   scene.remove(scene.getObjectByName('light'))
 
-  console.log(intensity)
 
   light = new THREE.DirectionalLight(color, intensity);
   light.name = 'light'
