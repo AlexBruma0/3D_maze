@@ -1,10 +1,7 @@
 import * as THREE from 'three';
 
-const left_wallx = 5;
-const left_wallz = -15;
 const wall_height = 10;
 const wall_width = 1;
-const wall_depth = 20
 const PI = 3.14
 const unit_length = 3.3;
 
