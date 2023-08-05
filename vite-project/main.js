@@ -196,15 +196,7 @@ function animate() {
 
     if(camera.position.z >= max_backwards ||(camera.position.z > max_forwards + 2 && camera.position.x <= max_left ))
      camera.position.z -= pushback;
- 
 
-    // if(camera.position.z >-max_forword &&camera.position.z <max_forword ){
-    //   controls.moveRight(  direction.x * delta );
-    //   controls.moveForward(  direction.z * delta );
-    //   console.log(camera.position)
-    // }
-    // if(camera.position.z <=max_left) camera.position.x += 0.1;
-    // if(camera.position.z >=max_right) camera.position.x -= 0.1;
 
   }
 

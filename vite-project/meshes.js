@@ -194,17 +194,6 @@ export function meshes(scene) {
           ]
 
         }
-        // else if ( i == 9){
-        //     material = 
-        //     [
-        //         new THREE.MeshBasicMaterial( {color: 'black'}),
-        //         new THREE.MeshBasicMaterial( {map: texture} ),
-        //         new THREE.MeshBasicMaterial( {color: 'black'}),
-        //         new THREE.MeshBasicMaterial( {color: 'black'}),
-        //         new THREE.MeshBasicMaterial( {color: 'black'}),
-        //         new THREE.MeshBasicMaterial( {color: 'black'}),
-        //   ]
-        // }
         else{
             material = 
             [
