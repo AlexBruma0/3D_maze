@@ -186,7 +186,7 @@ function animate() {
     console.log(camera.position)
     
     if((camera.position.x <=max_left && camera.position.z >= (max_forwards + 3)
-    && camera.position.z <= (max_backwards - 3)) || (camera.position.z <= (-5) && camera.position.z > (-15) && camera.position.x < 6) ) 
+    && camera.position.z <= (max_backwards - 3)) || (camera.position.z <= (-5) && camera.position.z > (-15) && camera.position.x < 6 && camera.position.x > 0) ) 
     camera.position.x += pushback;
 
     if(camera.position.x >=max_right || (camera.position.z <= (max_forwards ) && camera.position.x > 7))
