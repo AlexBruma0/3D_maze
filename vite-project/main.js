@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { meshes } from './meshes';
+import { meshes } from './meshes.js';
 
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
@@ -219,10 +219,6 @@ function animate() {
   light.target.position.set(-5, 0, -5);
   scene.add(light);
   scene.add(light.target);
-
-  
-  
-  
 
   renderer.render( scene, camera );
 
