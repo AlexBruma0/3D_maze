@@ -27,7 +27,7 @@ function init() {
 
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
   camera.position.y = 2;
-  camera.position.x = 20;
+  camera.position.x = -20;
 
 
   scene = new THREE.Scene();
@@ -186,15 +186,16 @@ function animate() {
     console.log(camera.position)
     
     if((camera.position.x <=max_left && camera.position.z >= (max_forwards + 3)
-    && camera.position.z <= (max_backwards - 3)) || (camera.position.z <= (-5) && camera.position.z > (-15) && camera.position.x < 6 && camera.position.x > 0) ) 
+    && camera.position.z <= (max_backwards - 3)  && camera.position.x > -5) || (camera.position.z <= (-5) && camera.position.z > (-15) && camera.position.x < 6 && camera.position.x > 0) ) 
     camera.position.x += pushback;
 
     if(camera.position.x >=max_right || (camera.position.z <= (max_forwards ) && camera.position.x > 7))
      camera.position.x -= pushback;
 
-    if(camera.position.z <= max_forwards && camera.position.x > (max_left - 8)) camera.position.z += pushback;
+    if(camera.position.z <= max_forwards && camera.position.x > (max_left - 8)) 
+    camera.position.z += pushback;
 
-    if(camera.position.z >= max_backwards ||(camera.position.z > max_forwards + 2 && camera.position.x <= max_left ))
+    if((camera.position.z >= max_backwards && camera.position.x > 0 && camera.position.z < 0) ||(camera.position.z > max_forwards + 2 && camera.position.x <= max_left && camera.position.x > 10 && camera.position.z < 0 ))
      camera.position.z -= pushback;
 
 
