@@ -152,6 +152,12 @@ export function meshes(scene) {
             texture.center = new THREE.Vector2(0.5,0.5)
             texture.rotation = Math.PI
         }
+        else if(i == 12){
+            texture = loader.load( "./personalProjects.png" );
+        }
+        else if(i == 14){
+            texture = loader.load( "./personalProjects.png" );
+        }
         else {
             texture = loader.load( "./arrow.png" );
         }
@@ -179,7 +185,7 @@ export function meshes(scene) {
                 new THREE.MeshBasicMaterial( {color: 'black'}),
           ]
         }
-        else if (i == 0 || i == 3 || i == 4 || i == 6  || i == 11 || i == 14 || i == 17|| i == 21 || i == 23    ){
+        else if (i == 0 || i == 3 || i == 4 || i == 6 || i == 12|| i == 14  || i == 11 || i == 17|| i == 21 || i == 23    ){
             material = 
             [
                 new THREE.MeshBasicMaterial( {map: texture} ),
